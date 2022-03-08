@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Diretor : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject imagemGameOver;
     private Aviao aviao;
     private Pontuacao pontuacao;
+    private InterfaceGameOver interfaceGameOver;
 
     private void Start() //acionado quando a cena inteira foi criada
     {
+        interfaceGameOver = GameObject.FindObjectOfType<InterfaceGameOver>();
         aviao = GameObject.FindObjectOfType<Aviao>(); //pega um objeto só. Busca a dependencia dentro da cena inteira
         pontuacao = GameObject.FindObjectOfType<Pontuacao>();
     }
@@ -18,12 +18,13 @@ public class Diretor : MonoBehaviour
     public void FinalizarJogo()
     {
         Time.timeScale = 0;
-        imagemGameOver.SetActive(true);
+        pontuacao.SalvarRecorde();
+        interfaceGameOver.MostrarInterface();
     }
 
     public void ReiniciarJogo()
     {
-        this.imagemGameOver.SetActive(false);
+        interfaceGameOver.EsconderInterface();
         Time.timeScale = 1;
         this.aviao.Reiniciar();
         this.DestruirObstaculos();
