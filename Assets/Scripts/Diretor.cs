@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Diretor : MonoBehaviour
 {
-    private Aviao aviao;
+    private JogadorAviao jogadorAviao;
     private Pontuacao pontuacao;
     private InterfaceGameOver interfaceGameOver;
 
     private void Start() //acionado quando a cena inteira foi criada
     {
         interfaceGameOver = GameObject.FindObjectOfType<InterfaceGameOver>();
-        aviao = GameObject.FindObjectOfType<Aviao>(); //pega um objeto só. Busca a dependencia dentro da cena inteira
+        jogadorAviao = GameObject.FindObjectOfType<JogadorAviao>(); //pega um objeto só. Busca a dependencia dentro da cena inteira
         pontuacao = GameObject.FindObjectOfType<Pontuacao>();
     }
 
@@ -26,7 +26,7 @@ public class Diretor : MonoBehaviour
     {
         interfaceGameOver.EsconderInterface();
         Time.timeScale = 1;
-        this.aviao.Reiniciar();
+       // this.aviao.Reiniciar();
         this.DestruirObstaculos();
         this.pontuacao.ReiniciarPontos();
     }

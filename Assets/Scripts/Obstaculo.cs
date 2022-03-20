@@ -5,7 +5,7 @@ using UnityEngine;
 public class Obstaculo : MonoBehaviour
 {
     [SerializeField]
-    private float velocidade = 0.05f;
+    private VariavelCompartilhadaFloat velocidade;
     [SerializeField]
     private float variacaoDaPosicaoY;
     private Vector3 posicaoDoAviao;
@@ -20,13 +20,13 @@ public class Obstaculo : MonoBehaviour
     private void Start()
     {
         pontuacao = GameObject.FindObjectOfType<Pontuacao>();
-        this.posicaoDoAviao = GameObject.FindObjectOfType<Aviao>().transform.position;
+        this.posicaoDoAviao = GameObject.FindObjectOfType<JogadorAviao>().transform.position;
     }
 
     private void Update()
     {
         /*O obstaculo movimenta-se para esquerda de acordo com o tempo*/
-        this.transform.Translate(Vector3.left * velocidade * Time.deltaTime);
+        this.transform.Translate(Vector3.left * velocidade.valor * Time.deltaTime);
 
         if(!pontuei && this.transform.position.x < posicaoDoAviao.x)
         {
